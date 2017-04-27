@@ -13,9 +13,9 @@ Optionally you can remove installation manager stuff (directories and install da
 You can start the stack using docker-compose and provided docker-compose.yml file. This starts up single Object Server named AGG and a WebGUI instance.
 
 ## Manual Build Image:
-cd <path to DockerFile of docker-omnibus-8.1>
+change directory to DockerFile of docker-omnibus-8.1
 docker build -t omnibus-8.1 .
-cd <path to DockerFile of docker-webgui-8.1>
+change directory to DockerFile of docker-webgui-8.1
 docker build -t noi-webgui-8.1 .
 
 ## Manual run containers:
