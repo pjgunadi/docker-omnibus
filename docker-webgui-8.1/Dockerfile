@@ -1,7 +1,7 @@
 FROM centos:7
 MAINTAINER Julius Loman <lomo@kyberia.net>
 # Forked from: https://github.com/juliusloman/docker-omnibus
-# Updated with Latest Netcool/Omnibus Core 8.1 Fixpack 11
+# Updated with Latest Netcool/Omnibus WEBGUI 8.1 Fixpack 9
 
 # Update with your local http server for installation binary download
 ENV INSTALLHOST="http://172.17.0.1:8080" 
