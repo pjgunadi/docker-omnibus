@@ -12,6 +12,17 @@ Optionally you can remove installation manager stuff (directories and install da
 
 You can start the stack using docker-compose and provided docker-compose.yml file. This starts up single Object Server named AGG and a WebGUI instance.
 
+## Manual Build Image:
+cd <path to DockerFile of docker-omnibus-8.1>
+docker build -t omnibus-8.1 .
+cd <path to DockerFile of docker-webgui-8.1>
+docker build -t noi-webgui-8.1 .
+
+## Manual run containers:
+docker run --name omnibus -d -e OBJSRV=AGG -p 4100:4100 omnibus-8.1
+docker run --name webgui -d --link omnibus:agg -e OBJECTSERVER_PRIMARY_HOST=agg -e OBJECTSERVER_PRIMARY_PORT=4100 \
+-e OBJECTSERVER_PRIMARY_NAME=AGG -e OBJECTSERVER_USER=root -e OBJECTSERVER_PASSWORD= -p 16311:16311 noi-webgui-8.1
+
 ### Object Server
 Objectserver runs as dedicated user netcool and contains a single volume /db for database. Database initialization is called on container startup only.
 
