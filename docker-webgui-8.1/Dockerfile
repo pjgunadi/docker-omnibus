@@ -4,7 +4,7 @@ MAINTAINER Julius Loman <lomo@kyberia.net>
 # Updated with Latest Netcool/Omnibus WEBGUI 8.1 Fixpack 9
 
 # Update with your local http server for installation binary download
-ENV INSTALLHOST="http://172.17.0.1:8080" 
+ENV INSTALLHOST="http://netcool.install:8080" 
 
 # Add dependencies
 RUN yum --setopt=tsflags=nodocs -y install \
