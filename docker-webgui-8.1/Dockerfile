@@ -1,7 +1,10 @@
 FROM centos:7
 MAINTAINER Julius Loman <lomo@kyberia.net>
+# Forked from: https://github.com/juliusloman/docker-omnibus
+# Updated with Latest Netcool/Omnibus Core 8.1 Fixpack 11
 
-ENV INSTALLHOST="http://netcool.install:8000" 
+# Update with your local http server for installation binary download
+ENV INSTALLHOST="http://172.17.0.1:8080" 
 
 # Add dependencies
 RUN yum --setopt=tsflags=nodocs -y install \
@@ -61,11 +64,11 @@ USER netcool
 
 # Perform installation
 RUN cd /tmp/install && \
-    curl -O $INSTALLHOST/agent.installer.linux.gtk.x86_64_1.8.3000.20150606_0047.zip && unzip -q -d /tmp/install/im agent.installer.linux.gtk.x86_64_1.8.3000.20150606_0047.zip && \
-    curl -O $INSTALLHOST/IBM_WAS_FOR_JSM_FOR_LNX_ML.zip && unzip -q -d /tmp/install/was IBM_WAS_FOR_JSM_FOR_LNX_ML.zip && \
-    curl -O $INSTALLHOST/JAZZ_FOR_SM_1.1.2.1_FOR_LNX.zip && unzip -q -d /tmp/install/jazz JAZZ_FOR_SM_1.1.2.1_FOR_LNX.zip && \
-    curl -O $INSTALLHOST/OMNIbus-v8.1-WebGUI.linux64.zip && unzip -q -d /tmp/install/webgui OMNIbus-v8.1-WebGUI.linux64.zip && \
-    curl -O $INSTALLHOST/OMNIbus-v8.1.0-WebGUI-FP3-IM-Extensions-linux64-UpdatePack.zip && unzip -q -d /tmp/install/webgui-fp OMNIbus-v8.1.0-WebGUI-FP3-IM-Extensions-linux64-UpdatePack.zip && \
+    curl -O $INSTALLHOST/agent.installer.linux.gtk.x86_64_1.8.6000.20161118_1611.zip && unzip -q -d /tmp/install/im agent.installer.linux.gtk.x86_64_1.8.6000.20161118_1611.zip && \
+    curl -O $INSTALLHOST/WAS_V8.5.5.9_FOR_JSM_FOR_LINUX_ML.zip && unzip -q -d /tmp/install/was WAS_V8.5.5.9_FOR_JSM_FOR_LINUX_ML.zip && \
+    curl -O $INSTALLHOST/JAZZ_FOR_SM_1.1.3.0_FOR_LNX.zip && unzip -q -d /tmp/install/jazz JAZZ_FOR_SM_1.1.3.0_FOR_LNX.zip && \
+    curl -O $INSTALLHOST/OMNIbus-v8.1.0.4-WebGUI.Linux64.zip && unzip -q -d /tmp/install/webgui OMNIbus-v8.1.0.4-WebGUI.Linux64.zip && \
+    curl -O $INSTALLHOST/OMNIbus-v8.1.0-WebGUI-FP9-IM-Extensions-linux64-UpdatePack.zip && unzip -q -d /tmp/install/webgui-fp OMNIbus-v8.1.0-WebGUI-FP9-IM-Extensions-linux64-UpdatePack.zip && \
     /tmp/install/im/userinstc --launcher.ini /tmp/install/im/user-silent-install.ini  -acceptLicense && \
     /home/netcool/IBM/InstallationManager/eclipse/IBMIM -acceptLicense -ShowVerboseProgress -silent -nosplash -input /tmp/install/scripts/webgui-response.xml && \
     /opt/IBM/JazzSM/profile/bin/startServer.sh server1 -script /opt/IBM/JazzSM/profile/bin/startJazz.sh && \
