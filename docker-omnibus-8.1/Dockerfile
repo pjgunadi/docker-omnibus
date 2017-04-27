@@ -4,7 +4,7 @@ MAINTAINER Julius Loman <lomo@kyberia.net>
 # Updated with Latest Netcool/Omnibus Core 8.1 Fixpack 11
 
 # Update with your local http server for installation binary download
-ENV INSTALLHOST="http://172.17.0.1:8080" NCHOME="/opt/IBM/tivoli/netcool" OMNIHOME="/opt/IBM/tivoli/netcool/omnibus" OBJSRV="NCOMS" OBJSRV_PORT=4100 
+ENV INSTALLHOST="http://netcool.install:8080" NCHOME="/opt/IBM/tivoli/netcool" OMNIHOME="/opt/IBM/tivoli/netcool/omnibus" OBJSRV="NCOMS" OBJSRV_PORT=4100 
 
 # Add dependencies
 RUN yum --setopt=tsflags=nodocs -y install \
